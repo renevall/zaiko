@@ -1,4 +1,4 @@
-package zaiko
+package domain
 
 import (
 	"github.com/jinzhu/gorm"

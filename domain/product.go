@@ -1,4 +1,4 @@
-package zaiko
+package domain
 
 import "github.com/jinzhu/gorm"
 
@@ -6,16 +6,17 @@ import "github.com/jinzhu/gorm"
 type Product struct {
 	gorm.Model
 	Name  string       `json:"name"`
-	Store ProductStore `gorm:"-"`
+	Store ProductStore `gorm:"-" json:"-"` //Interface
+	Trans []Trans
 }
 
 //ProductStore is the contract interface to the DB
 type ProductStore interface {
-	CreateProduct(Product) Product
+	CreateProduct(*Product)
 	ReadProductByID(int) Product
 	ReadProductByName(string) Product
-	UpdateProduct()
-	DeleteProduct()
+	UpdateProduct(Product) Product
+	DeleteProduct(id int) error
 }
 
 //NewProduct returns an instance with the db/store dependency met

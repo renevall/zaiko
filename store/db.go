@@ -2,7 +2,7 @@ package store
 
 import (
 	"github.com/jinzhu/gorm"
-	"github.com/renevall/zaiko"
+	"github.com/renevall/zaiko/domain"
 )
 
 type DB struct {
@@ -15,10 +15,9 @@ func NewDB() *DB {
 	if err != nil {
 		panic("failed to connect database")
 	}
-	defer db.Close()
 
 	// Migrate the schema
-	db.AutoMigrate(&zaiko.Product{}, &zaiko.Stock{}, &zaiko.Transaction{})
+	db.AutoMigrate(&domain.Product{}, &domain.Stock{}, &domain.Trans{})
 
 	return &DB{db}
 }

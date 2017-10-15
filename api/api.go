@@ -31,5 +31,16 @@ func setRoutes(db *store.DB, r *gin.Engine) {
 	r.POST("/product", CreateProduct(db))
 	r.PUT("/product/:id", NotImplemented)
 	r.PATCH("/product/:id", NotImplemented)
-	r.DELETE("/product/:id", NotImplemented)
+	r.DELETE("/product/:id", DeleteProduct(db))
+
+	r.GET("/trans/:id", NotImplemented)
+	r.GET("/trans", NotImplemented)
+	r.POST("/trans", NotImplemented)
+	r.GET("/product/:id/trans", NotImplemented)
+}
+
+//NotImplemented is a test dummy for handler
+func NotImplemented(c *gin.Context) {
+	content := gin.H{"Response": "Not Implemented"}
+	c.JSON(http.StatusOK, content)
 }
