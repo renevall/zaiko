@@ -6,7 +6,7 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
-	"github.com/renevall/domain"
+	"github.com/renevall/zaiko/domain"
 )
 
 type idForm struct {

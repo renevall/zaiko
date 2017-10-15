@@ -1,6 +1,7 @@
 package api
 
 import (
+	"net/http"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -35,7 +36,7 @@ func setRoutes(db *store.DB, r *gin.Engine) {
 
 	r.GET("/trans/:id", NotImplemented)
 	r.GET("/trans", NotImplemented)
-	r.POST("/trans", NotImplemented)
+	r.POST("/trans", CreateTrans(db))
 	r.GET("/product/:id/trans", NotImplemented)
 }
 

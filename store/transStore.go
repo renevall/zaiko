@@ -1,10 +1,18 @@
 package store
 
-import "github.com/renevall/zaiko/domain"
+import (
+	"github.com/pkg/errors"
+
+	"github.com/renevall/zaiko/domain"
+)
 
 //CreateTrans creates a Trans Object inside the db store
-func (db *DB) CreateTrans(t *domain.Trans) {
-	db.Create(t)
+func (db *DB) CreateTrans(t *domain.Trans) error {
+	err := db.Create(t).Error
+	if err != nil {
+		return errors.Wrap(err, "Trying to save transaction")
+	}
+	return nil
 }
 
 //ReadTransByID creates a Trans Object inside the db store
